@@ -1,8 +1,9 @@
 class Cell:
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color, age):
         self.x = x
         self.y = y
         self.color = color
+        self.age = age
 
     def occupies_same_space_as(self, other_cell):
         if self.blank() or other_cell.blank():
