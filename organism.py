@@ -17,7 +17,7 @@ class Organism:
 
         self.x = position[0]
         self.y = position[1]
-        self.size = 12
+        self.size = 20
 
         self.cells = []
         starting_point = self.y
@@ -55,7 +55,7 @@ class Organism:
             y = self.youngest_cell().y + y_offset
             cell = Cell(x, y, self.color, 0)
 
-            if cell_screen.space_available(cell, self.cells):
+            if cell_screen.space_available(cell):
                 self.cells.append(cell)
                 return
 

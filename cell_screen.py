@@ -37,7 +37,7 @@ class CellScreen:
             if self_organism == organism:
                 del self.organisms[i]
 
-    def space_available(self, cell, other_cells):
+    def space_available(self, cell):
         if cell.y < 0:
             return False
         if cell.x < 0:
@@ -47,7 +47,14 @@ class CellScreen:
         if cell.x > self.width:
             return False
 
-        for other_cell in other_cells:
+        for other_cell in self.other_cells():
             if cell.occupies_same_space_as(other_cell):
                 return False
         return True
+
+    def other_cells(self):
+        cells = []
+        for organism in self.organisms:
+            for cell in organism.cells:
+                cells.append(cell)
+        return cells

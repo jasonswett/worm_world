@@ -12,7 +12,7 @@ def main():
     SCREEN_WIDTH = 60
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    organisms = [
+    cell_screen.organisms = [
         Organism((20, 0)),
         Organism((30, 0)),
         Organism((40, 0)),
@@ -24,7 +24,7 @@ def main():
     while True:
         cell_screen.clear()
 
-        for organism in organisms:
+        for organism in cell_screen.organisms:
             if organism.alive:
                 organism.advance(cell_screen)
                 cell_screen.draw_organism(organism)
