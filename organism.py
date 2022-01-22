@@ -43,17 +43,9 @@ class Organism:
                 self.die()
                 return
 
-            raw_x_offset = random.uniform(0, 1)
-            if raw_x_offset > self.bias_toward_straight_movement:
-                x_offset = 0
-            else:
-                x_offset = 1
-
-            x_modifier = [-1, 1][random.randint(0, 1)]
-            x_offset *= x_modifier
-
+            x_offset = self.offset()
             if x_offset == 0:
-                y_offset = random.randint(-1, 1) # this should really only be -1 OR 1, not 0
+                y_offset = [-1, 1][random.randint(0, 1)]
             else:
                 y_offset = 0
 
@@ -64,6 +56,18 @@ class Organism:
             if cell_screen.space_available(cell):
                 self.cells.append(cell)
                 return
+
+    def offset(self):
+        raw_offset = random.uniform(0, 1)
+        if raw_offset > self.bias_toward_straight_movement:
+            offset = 0
+        else:
+            offset = 1
+
+        x_modifier = [-1, 1][random.randint(0, 1)]
+        offset *= x_modifier
+        return offset
+
 
     def youngest_cell(self):
         youngest_cell = self.cells[0]
