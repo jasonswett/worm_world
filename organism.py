@@ -28,18 +28,28 @@ class Organism:
 
     def add_new_cell_at_head(self):
         BLUE = (0, 0, 255)
-        x_variation = random.randint(-1, 1)
+        found_unoccupied_space = False
 
-        if x_variation == 0:
-            y_offset = 1
-        else:
-            y_offset = 0
+        while found_unoccupied_space == False:
+            x_offset = random.randint(-1, 1)
 
-        x = self.youngest_cell().x + x_variation
-        y = self.youngest_cell().y + y_offset
+            if x_offset == 0:
+                y_offset = 1
+            else:
+                y_offset = 0
 
-        cell = Cell(x, y, BLUE, 0)
-        self.cells.append(cell)
+            x = self.youngest_cell().x + x_offset
+            y = self.youngest_cell().y + y_offset
+            cell = Cell(x, y, BLUE, 0)
+
+            cell_space_conflict = False
+            for other_cell in self.cells:
+                if cell.occupies_same_space_as(other_cell):
+                    cell_space_conflict = True
+
+            if not(cell_space_conflict):
+                found_unoccupied_space = True
+                self.cells.append(cell)
 
     def youngest_cell(self):
         youngest_cell = self.cells[0]
