@@ -6,28 +6,27 @@ from blank_cell import BlankCell
 from chromosome import Chromosome
 
 class Organism:
+    BLUE = (0, 0, 255)
+
     def __init__(self, position):
         self.x = position[0]
         self.y = position[1]
         self.size = 8
 
         self.cells = []
-        BLUE = (0, 0, 255)
         starting_point = self.y
         ending_point = self.size
 
         for y in range(starting_point, ending_point):
-            cell = Cell(self.x, self.y + y, BLUE, ending_point - y)
+            cell = Cell(self.x, self.y + y, self.BLUE, ending_point - y)
             self.cells.append(cell)
 
-    def advance(self):
-        oldest_cell = self.oldest_cell()
-        self.remove_cell(oldest_cell)
+    def advance(self, cell_screen):
+        self.remove_cell(self.oldest_cell())
         self.age_all_cells()
         self.add_new_cell_at_head()
 
     def add_new_cell_at_head(self):
-        BLUE = (0, 0, 255)
         found_unoccupied_space = False
 
         while found_unoccupied_space == False:
@@ -40,7 +39,7 @@ class Organism:
 
             x = self.youngest_cell().x + x_offset
             y = self.youngest_cell().y + y_offset
-            cell = Cell(x, y, BLUE, 0)
+            cell = Cell(x, y, self.BLUE, 0)
 
             cell_space_conflict = False
             for other_cell in self.cells:

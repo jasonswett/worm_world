@@ -20,7 +20,7 @@ def main():
         cell_screen.clear()
 
         for organism in organisms:
-            organism.advance()
+            organism.advance(cell_screen)
             cell_screen.draw_organism(organism)
 
         pygame.display.update()
