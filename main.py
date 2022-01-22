@@ -9,7 +9,7 @@ from chromosome import Chromosome
 
 def main():
     pygame.init()
-    SCREEN_WIDTH = 40
+    SCREEN_WIDTH = 60
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
     organisms = [
@@ -24,6 +24,6 @@ def main():
             cell_screen.draw_organism(organism)
 
         pygame.display.update()
-        time.sleep(0.1)
+        time.sleep(0.05)
 
 main()
