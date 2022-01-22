@@ -23,6 +23,8 @@ class Organism:
         starting_point = self.y
         ending_point = self.y + self.size
 
+        self.bias_toward_straight_movement = random.uniform(0, 1)
+
         for y in range(starting_point, ending_point):
             cell = Cell(self.x, self.y + y, self.color, ending_point - y)
             self.cells.append(cell)
@@ -41,8 +43,12 @@ class Organism:
                 self.die()
                 return
 
-            #x_offset = random.randint(-1, 1)
-            x_offset = random.randint(0, 1)
+            raw_x_offset = random.uniform(0, 1)
+            if raw_x_offset > self.bias_toward_straight_movement:
+                x_offset = 0
+            else:
+                x_offset = 1
+
             x_modifier = [-1, 1][random.randint(0, 1)]
             x_offset *= x_modifier
 

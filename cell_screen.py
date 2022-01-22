@@ -42,9 +42,9 @@ class CellScreen:
             return False
         if cell.x < 0:
             return False
-        if cell.y > self.height:
+        if cell.y >= self.height:
             return False
-        if cell.x > self.width:
+        if cell.x >= self.width:
             return False
 
         for other_cell in self.other_cells():
