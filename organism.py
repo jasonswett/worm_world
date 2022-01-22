@@ -35,9 +35,10 @@ class Organism:
         else:
             y_offset = 0
 
+        x = self.youngest_cell().x + x_variation
         y = self.youngest_cell().y + y_offset
 
-        cell = Cell(self.youngest_cell().x + x_variation, y, BLUE, 0)
+        cell = Cell(x, y, BLUE, 0)
         self.cells.append(cell)
 
     def youngest_cell(self):
