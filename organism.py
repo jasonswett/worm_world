@@ -43,7 +43,7 @@ class Organism:
 
             cell_space_conflict = False
             for other_cell in self.cells:
-                if cell.occupies_same_space_as(other_cell):
+                if cell_screen.space_not_available(cell, other_cell):
                     cell_space_conflict = True
 
             if not(cell_space_conflict):

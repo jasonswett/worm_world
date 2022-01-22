@@ -36,3 +36,9 @@ class CellScreen:
         for i, self_organism in enumerate(self.organisms):
             if self_organism == organism:
                 del self.organisms[i]
+
+    def space_not_available(self, cell, other_cell):
+        if cell.occupies_same_space_as(other_cell):
+            return True
+        else:
+            return False
