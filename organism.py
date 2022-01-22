@@ -41,12 +41,7 @@ class Organism:
             y = self.youngest_cell().y + y_offset
             cell = Cell(x, y, self.BLUE, 0)
 
-            cell_space_conflict = False
-            for other_cell in self.cells:
-                if cell_screen.space_not_available(cell, other_cell):
-                    cell_space_conflict = True
-
-            if not(cell_space_conflict):
+            if not(cell_screen.cell_space_conflict(cell, self.cells)):
                 found_unoccupied_space = True
                 self.cells.append(cell)
 
