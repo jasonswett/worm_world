@@ -13,16 +13,12 @@ def main():
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
     time.sleep(1)
 
-    cell_screen.organisms = [
-        Organism((0, 0)),
-        Organism((20, 0)),
-        Organism((40, 0)),
-        Organism((60, 0)),
-        Organism((0, 15)),
-        Organism((20, 15)),
-        Organism((40, 15)),
-        Organism((60, 15)),
-    ]
+    MAX_ALLOWED_ORGANISMS = 30
+    WORM_SIZE = 8
+    for i in range(0, MAX_ALLOWED_ORGANISMS):
+        x = random.randint(0, cell_screen.width - 1)
+        y = random.randint(0, cell_screen.height - WORM_SIZE - 1)
+        cell_screen.organisms.append(Organism((x, y), WORM_SIZE))
 
     while True:
         cell_screen.clear()

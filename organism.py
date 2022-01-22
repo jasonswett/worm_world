@@ -6,7 +6,7 @@ from blank_cell import BlankCell
 from chromosome import Chromosome
 
 class Organism:
-    def __init__(self, position):
+    def __init__(self, position, size):
         self.alive = True
 
         self.color = (
@@ -17,7 +17,7 @@ class Organism:
 
         self.x = position[0]
         self.y = position[1]
-        self.size = 8
+        self.size = size
 
         self.cells = []
         starting_point = self.y
