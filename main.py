@@ -11,14 +11,17 @@ def main():
     pygame.init()
     SCREEN_WIDTH = 60
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
+    time.sleep(2)
 
     cell_screen.organisms = [
+        Organism((0, 0)),
         Organism((20, 0)),
-        Organism((30, 0)),
         Organism((40, 0)),
-        Organism((50, 0)),
         Organism((60, 0)),
-        Organism((70, 0)),
+        Organism((0, 15)),
+        Organism((20, 15)),
+        Organism((40, 15)),
+        Organism((60, 15)),
     ]
 
     while True:

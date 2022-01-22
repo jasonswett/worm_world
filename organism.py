@@ -21,7 +21,7 @@ class Organism:
 
         self.cells = []
         starting_point = self.y
-        ending_point = self.size
+        ending_point = self.y + self.size
 
         for y in range(starting_point, ending_point):
             cell = Cell(self.x, self.y + y, self.color, ending_point - y)
