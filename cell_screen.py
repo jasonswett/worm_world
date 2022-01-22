@@ -12,6 +12,9 @@ class CellScreen:
         height_in_pixels = CELL_WIDTH * height
         self.display = pygame.display.set_mode((width_in_pixels, height_in_pixels), 0, 32)
 
+    def clear(self):
+        self.display.fill((0, 0, 0))
+
     def draw_cell(self, cell):
         x_position = cell.x * CELL_WIDTH
         y_position = cell.y * CELL_WIDTH

@@ -11,10 +11,17 @@ class Organism:
         self.y = position[1]
         self.size = 8
 
+        self.refresh_cells()
+
+    def advance(self):
+        self.y = self.y + 1
+        self.refresh_cells()
+
+    def refresh_cells(self):
         self.cells = []
         BLUE = (0, 0, 255)
 
-        for y in range(0, self.size):
+        for y in range(self.y, self.y + self.size):
             age = y
             cell = Cell(self.x, self.y + y, BLUE, age)
             self.cells.append(cell)
