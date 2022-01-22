@@ -38,7 +38,4 @@ class CellScreen:
                 del self.organisms[i]
 
     def space_not_available(self, cell, other_cell):
-        if cell.occupies_same_space_as(other_cell):
-            return True
-        else:
-            return False
+        return cell.occupies_same_space_as(other_cell)
