@@ -14,8 +14,8 @@ def main():
     time.sleep(1)
 
     MAX_ALLOWED_ORGANISMS = 30
-    WORM_SIZE = 8
     for i in range(0, MAX_ALLOWED_ORGANISMS):
+        WORM_SIZE = random.randint(4, 20)
         x = random.randint(0, cell_screen.width - 1)
         y = random.randint(0, cell_screen.height - WORM_SIZE - 1)
         cell_screen.organisms.append(Organism((x, y), WORM_SIZE))
