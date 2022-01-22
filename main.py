@@ -19,6 +19,6 @@ def main():
         organism.advance()
         cell_screen.draw_organism(organism)
         pygame.display.update()
-        time.sleep(0.5)
+        time.sleep(0.1)
 
 main()

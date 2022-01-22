@@ -28,7 +28,16 @@ class Organism:
 
     def add_new_cell_at_head(self):
         BLUE = (0, 0, 255)
-        cell = Cell(self.x, self.youngest_cell().y + 1, BLUE, 0)
+        x_variation = random.randint(-1, 1)
+
+        if x_variation == 0:
+            y_offset = 1
+        else:
+            y_offset = 0
+
+        y = self.youngest_cell().y + y_offset
+
+        cell = Cell(self.youngest_cell().x + x_variation, y, BLUE, 0)
         self.cells.append(cell)
 
     def youngest_cell(self):
