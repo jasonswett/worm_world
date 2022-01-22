@@ -39,7 +39,7 @@ class Organism:
             y = self.youngest_cell().y + y_offset
             cell = Cell(x, y, self.BLUE, 0)
 
-            if not(cell_screen.cell_space_conflict(cell, self.cells)):
+            if cell_screen.space_available(cell, self.cells):
                 self.cells.append(cell)
                 return
 

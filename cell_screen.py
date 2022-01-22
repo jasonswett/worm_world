@@ -40,8 +40,8 @@ class CellScreen:
     def space_not_available(self, cell, other_cell):
         return cell.occupies_same_space_as(other_cell)
 
-    def cell_space_conflict(self, cell, other_cells):
+    def space_available(self, cell, other_cells):
         for other_cell in other_cells:
             if self.space_not_available(cell, other_cell):
-                return True
-        return False
+                return False
+        return True
