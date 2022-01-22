@@ -13,7 +13,12 @@ def main():
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
     organisms = [
-        Organism((20, 0))
+        Organism((20, 0)),
+        Organism((30, 0)),
+        Organism((40, 0)),
+        Organism((50, 0)),
+        Organism((60, 0)),
+        Organism((70, 0)),
     ]
 
     while True:
@@ -25,6 +30,6 @@ def main():
                 cell_screen.draw_organism(organism)
 
         pygame.display.update()
-        time.sleep(0.05)
+        time.sleep(0.1)
 
 main()
