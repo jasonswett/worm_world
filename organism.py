@@ -9,6 +9,8 @@ class Organism:
     BLUE = (0, 0, 255)
 
     def __init__(self, position):
+        self.alive = True
+
         self.x = position[0]
         self.y = position[1]
         self.size = 40
@@ -27,7 +29,14 @@ class Organism:
         self.add_new_cell_at_head(cell_screen)
 
     def add_new_cell_at_head(self, cell_screen):
+        number_of_attempts_to_find_unoccupied_space = 0
+
         while True:
+            number_of_attempts_to_find_unoccupied_space += 1
+            if number_of_attempts_to_find_unoccupied_space >= 100:
+                self.die()
+                return
+
             x_offset = random.randint(-1, 1)
 
             if x_offset == 0:
@@ -70,3 +79,7 @@ class Organism:
     def age_all_cells(self):
         for cell in self.cells:
             cell.age = cell.age + 1
+
+    def die(self):
+        print("I DIED!!!!")
+        self.alive = False

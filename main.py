@@ -20,8 +20,9 @@ def main():
         cell_screen.clear()
 
         for organism in organisms:
-            organism.advance(cell_screen)
-            cell_screen.draw_organism(organism)
+            if organism.alive:
+                organism.advance(cell_screen)
+                cell_screen.draw_organism(organism)
 
         pygame.display.update()
         time.sleep(0.05)
