@@ -17,7 +17,7 @@ class Organism:
 
         self.x = position[0]
         self.y = position[1]
-        self.size = 8
+        self.size = 12
 
         self.cells = []
         starting_point = self.y
