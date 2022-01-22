@@ -10,15 +10,7 @@ class Organism:
         self.x = position[0]
         self.y = position[1]
         self.size = 8
-        self.refresh_cells()
 
-    def advance(self):
-        oldest_cell = self.oldest_cell()
-        self.remove_cell(oldest_cell)
-        self.age_all_cells()
-        #self.add_new_cell_at_head()
-
-    def refresh_cells(self):
         self.cells = []
         BLUE = (0, 0, 255)
         starting_point = self.y
@@ -27,6 +19,17 @@ class Organism:
         for y in range(starting_point, ending_point):
             cell = Cell(self.x, self.y + y, BLUE, ending_point - y)
             self.cells.append(cell)
+
+    def advance(self):
+        oldest_cell = self.oldest_cell()
+        self.remove_cell(oldest_cell)
+        self.age_all_cells()
+        self.add_new_cell_at_head()
+
+    def add_new_cell_at_head(self):
+        BLUE = (0, 0, 255)
+        cell = Cell(self.x, self.youngest_cell().y + 1, BLUE, 0)
+        self.cells.append(cell)
 
     def youngest_cell(self):
         youngest_cell = self.cells[0]
