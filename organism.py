@@ -27,9 +27,7 @@ class Organism:
         self.add_new_cell_at_head(cell_screen)
 
     def add_new_cell_at_head(self, cell_screen):
-        found_unoccupied_space = False
-
-        while found_unoccupied_space == False:
+        while True:
             x_offset = random.randint(-1, 1)
 
             if x_offset == 0:
@@ -42,8 +40,8 @@ class Organism:
             cell = Cell(x, y, self.BLUE, 0)
 
             if not(cell_screen.cell_space_conflict(cell, self.cells)):
-                found_unoccupied_space = True
                 self.cells.append(cell)
+                return
 
     def youngest_cell(self):
         youngest_cell = self.cells[0]
