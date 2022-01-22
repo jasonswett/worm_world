@@ -24,9 +24,9 @@ class Organism:
     def advance(self, cell_screen):
         self.remove_cell(self.oldest_cell())
         self.age_all_cells()
-        self.add_new_cell_at_head()
+        self.add_new_cell_at_head(cell_screen)
 
-    def add_new_cell_at_head(self):
+    def add_new_cell_at_head(self, cell_screen):
         found_unoccupied_space = False
 
         while found_unoccupied_space == False:
