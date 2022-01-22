@@ -41,7 +41,10 @@ class Organism:
                 self.die()
                 return
 
-            x_offset = random.randint(-1, 1)
+            #x_offset = random.randint(-1, 1)
+            x_offset = random.randint(0, 1)
+            x_modifier = [-1, 1][random.randint(0, 1)]
+            x_offset *= x_modifier
 
             if x_offset == 0:
                 y_offset = random.randint(-1, 1) # this should really only be -1 OR 1, not 0
@@ -85,5 +88,4 @@ class Organism:
             cell.age = cell.age + 1
 
     def die(self):
-        print("I DIED!!!!")
         self.alive = False
