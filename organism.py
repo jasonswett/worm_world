@@ -34,7 +34,7 @@ class Organism:
             x_offset = random.randint(-1, 1)
 
             if x_offset == 0:
-                y_offset = 1
+                y_offset = random.randint(-1, 1) # this should really only be -1 OR 1, not 0
             else:
                 y_offset = 0
 
