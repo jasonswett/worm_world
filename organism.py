@@ -54,22 +54,28 @@ class Organism:
         self._age -= 5
 
     def movement(self):
-        #x_offset = self.offset()
-        #if x_offset == 0:
-        #    y_offset = [-1, 1][random.randint(0, 1)]
-        #else:
-        #    y_offset = 0
         return self.chromosome.next_movement()
+
+    def random_movement(self):
+        random_offset = [-1, 1][random.randint(0, 1)]
+
+        if random.randint(0, 1) == 0:
+            return [random_offset, 0]
+        else:
+            return [0, random_offset]
 
     def add_new_cell_at_head(self):
         number_of_attempts_to_find_unoccupied_space = 0
+        movement = self.movement()
 
         while True:
             number_of_attempts_to_find_unoccupied_space += 1
+
+            if number_of_attempts_to_find_unoccupied_space >= 2:
+                movement = self.random_movement()
+
             if number_of_attempts_to_find_unoccupied_space >= 100:
                 return
-
-            movement = self.movement()
 
             x = self.youngest_cell().x + movement[0]
             y = self.youngest_cell().y + movement[1]
@@ -84,18 +90,6 @@ class Organism:
                 self.age_all_cells()
                 self.cells.append(cell)
                 return
-
-    def offset(self):
-        raw_offset = random.uniform(0, 1)
-        if raw_offset > self.bias_toward_straight_movement:
-            offset = 0
-        else:
-            offset = 1
-
-        x_modifier = [-1, 1][random.randint(0, 1)]
-        offset *= x_modifier
-        return offset
-
 
     def youngest_cell(self):
         youngest_cell = self.cells[0]
