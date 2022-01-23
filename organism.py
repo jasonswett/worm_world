@@ -48,7 +48,6 @@ class Organism:
         self.add_new_cell_at_head(cell_screen)
 
     def add_new_cell_at_head(self, cell_screen):
-        self.age_all_cells()
         number_of_attempts_to_find_unoccupied_space = 0
 
         while True:
@@ -68,6 +67,7 @@ class Organism:
             cell = Cell(x, y, self.color, 0)
 
             if cell_screen.space_available(cell):
+                self.age_all_cells()
                 self.cells.append(cell)
                 return
 
@@ -116,5 +116,4 @@ class Organism:
 
         for cell in self.cells:
             food_cell = FoodCell((cell.x, cell.y))
-            #food_cell = FoodCell((0, 0))
             cell_screen.food_cells.append(food_cell)

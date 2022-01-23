@@ -18,8 +18,8 @@ def main():
 
     for i in range(0, NUMBER_OF_ORGANISMS):
         WORM_SIZE = random.randint(3, 8)
-        x = cell_screen.random_x()
-        y = cell_screen.random_y()
+        x = i * 5
+        y = 0
         cell_screen.organisms.append(Organism((x, y), WORM_SIZE))
 
     for i in range(0, NUMBER_OF_FOOD_CELLS):
