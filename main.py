@@ -57,7 +57,7 @@ def main():
 def add_organism(cell_screen, chromosome):
     worm_size = 4
     x = cell_screen.random_x()
-    y = 0
+    y = cell_screen.random_y()
 
     organism = Organism(
         cell_screen,
