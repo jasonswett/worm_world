@@ -13,7 +13,6 @@ def main():
     NUMBER_OF_FOOD_CELLS = 80
 
     pygame.init()
-    time.sleep(2)
 
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
@@ -27,6 +26,8 @@ def main():
         x = cell_screen.random_x()
         y = cell_screen.random_y()
         cell_screen.food_cells.append(FoodCell((x, y)))
+
+    time.sleep(2)
 
     while True:
         cell_screen.clear()

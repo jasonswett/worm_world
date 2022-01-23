@@ -36,7 +36,6 @@ class Organism:
             self.eat(eatable_food_cell, cell_screen)
 
         self.remove_cell(self.oldest_cell())
-        self.age_all_cells()
         self.add_new_cell_at_head(cell_screen)
 
     def eatable_food_cell(self, cell_screen):
@@ -48,8 +47,10 @@ class Organism:
 
     def eat(self, food_cell, cell_screen):
         cell_screen.food_cells.remove(food_cell)
+        self.add_new_cell_at_head(cell_screen)
 
     def add_new_cell_at_head(self, cell_screen):
+        self.age_all_cells()
         number_of_attempts_to_find_unoccupied_space = 0
 
         while True:
