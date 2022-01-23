@@ -21,10 +21,8 @@ def main():
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
     for i in range(0, NUMBER_OF_ORGANISMS):
-        worm_size = random.randint(4, 20)
-        x = i * 2
-        y = 0
-        cell_screen.organisms.append(Organism(cell_screen, (x, y), worm_size))
+        chromosome = Chromosome()
+        add_organism(cell_screen, chromosome, i)
 
     for i in range(0, NUMBER_OF_FOOD_CELLS):
         x = cell_screen.random_x()
@@ -52,5 +50,19 @@ def main():
 
         pygame.display.update()
         time.sleep(0.05)
+
+def add_organism(cell_screen, chromosome, i):
+    worm_size = random.randint(4, 20)
+    x = i * 2
+    y = 0
+
+    organism = Organism(
+        cell_screen,
+        (x, y),
+        worm_size,
+        chromosome.color()
+    )
+
+    cell_screen.organisms.append(organism)
 
 main()

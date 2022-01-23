@@ -1,22 +1,18 @@
 import random
 
 class Chromosome:
-    def __init__(self, width, length, dna_string):
-        self.GENE_LENGTH = 2
-        self.width = width
-        self.length = length
-        self.dna_string = dna_string
+    def __init__(self):
+        self.dna_string = ''
 
-        if self.dna_string == '':
-            for i in range(0, self.width * self.height()):
-                self.dna_string += '0' + str(random.randint(0, 1))
+        for i in range(0, 16):
+            self.dna_string += str(random.randint(0, 1))
 
-    def height(self):
-        return int(self.length / self.width)
+        print(self.dna_string)
 
-    def at(self, x, y):
-        position_for_cell = (x * self.width + y) * self.GENE_LENGTH
-        return self.dna_string[position_for_cell:position_for_cell + self.GENE_LENGTH]
+    def color(self):
+        red = '1' + self.dna_string[1:8]
+        blue = '1' + self.dna_string[9:16]
+        return (int(red, 2), 0, int(blue, 2))
 
     def offspring_with(self, other_chromosome):
         midway_point = random.randint(0, len(self.dna_string))
