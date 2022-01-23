@@ -1,15 +1,7 @@
-from particle_cell import ParticleCell
+from cell import Cell
 
-class FoodCell(ParticleCell):
-    def __init__(self, cell_screen):
-        self.cell_screen = cell_screen
-        self.x = self.cell_screen.width - 1
-        self.y = self.cell_screen.random_y()
+class FoodCell(Cell):
+    def __init__(self, position):
         self.color = (0, 255, 0)
-        self.increment_amount = -1
-
-    def food(self):
-        return True
-
-    def off_screen(self):
-        return self.x < -1
+        self.x = position[0]
+        self.y = position[1]
