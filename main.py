@@ -9,7 +9,7 @@ from chromosome import Chromosome
 
 def main():
     SCREEN_WIDTH = 60
-    NUMBER_OF_ORGANISMS = 10
+    NUMBER_OF_ORGANISMS = 20
     NUMBER_OF_FOOD_CELLS = 100
 
     pygame.init()
@@ -29,16 +29,22 @@ def main():
 
     time.sleep(2)
 
+    world_time = 0
+
     while True:
         cell_screen.clear()
+
+        world_time += 1
+        if world_time % 10 == 0:
+            for organism in cell_screen.organisms:
+                organism.age()
 
         for food_cell in cell_screen.food_cells:
             cell_screen.draw_cell(food_cell)
 
         for organism in cell_screen.organisms:
-            if organism.alive:
-                organism.advance()
-                cell_screen.draw_organism(organism)
+            organism.advance()
+            cell_screen.draw_organism(organism)
 
         pygame.display.update()
         time.sleep(0.05)

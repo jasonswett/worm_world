@@ -5,7 +5,7 @@ from chromosome import Chromosome
 
 class Organism:
     def __init__(self, cell_screen, position, size):
-        self.alive = True
+        self._age = 0
 
         self.color = (
             random.randint(100, 255),
@@ -28,6 +28,11 @@ class Organism:
             cell = Cell(self.x, self.y + y, self.color, ending_point - y)
             self.cells.append(cell)
 
+    def age(self):
+        self._age += 1
+        if self._age >= 10:
+            self.die()
+
     def advance(self):
         if len(self.cells) <= 3:
             self.die()
@@ -49,6 +54,7 @@ class Organism:
     def eat(self, food_cell):
         self.cell_screen.food_cells.remove(food_cell)
         self.add_new_cell_at_head()
+        self._age -= 5
 
     def add_new_cell_at_head(self):
         number_of_attempts_to_find_unoccupied_space = 0
@@ -121,7 +127,7 @@ class Organism:
             cell.age = cell.age + 1
 
     def die(self):
-        self.alive = False
+        self.cell_screen.organisms.remove(self)
 
         for cell in self.cells:
             food_cell = FoodCell((cell.x, cell.y))
