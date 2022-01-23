@@ -23,15 +23,8 @@ def main():
 
     time.sleep(2)
 
-    world_time = 0
-
     while True:
         cell_screen.clear()
-
-        world_time += 1
-        if world_time % 10 == 0:
-            for organism in cell_screen.organisms:
-                organism.age()
 
         for food_cell in cell_screen.food_cells:
             cell_screen.draw_cell(food_cell)

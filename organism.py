@@ -26,7 +26,7 @@ class Organism:
 
     def age(self):
         self._age += 1
-        if self._age >= 10:
+        if self._age >= 100:
             self.die()
 
     def advance(self):
@@ -91,6 +91,7 @@ class Organism:
             if self.cell_screen.space_available(cell):
                 self.age_all_cells()
                 if not(grow):
+                    self.age()
                     self.remove_cell(self.oldest_cell())
                 self.cells.append(cell)
                 return
