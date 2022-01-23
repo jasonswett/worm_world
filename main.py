@@ -13,7 +13,7 @@ def main():
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
     time.sleep(2)
 
-    MAX_ALLOWED_ORGANISMS = 6
+    MAX_ALLOWED_ORGANISMS = 8
     for i in range(0, MAX_ALLOWED_ORGANISMS):
         WORM_SIZE = random.randint(4, 20)
         x = i * 10
