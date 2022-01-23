@@ -4,6 +4,9 @@ class Chromosome:
     def __init__(self, dna_string):
         self.dna_string = dna_string
 
+        # Color: 16 bits
+        # Movement pattern:
+
         if self.dna_string == '':
             for i in range(0, 16):
                 self.dna_string += str(random.randint(0, 1))
@@ -11,8 +14,8 @@ class Chromosome:
         print(self.dna_string)
 
     def color(self):
-        red = '1' + self.dna_string[1:8]
-        blue = '1' + self.dna_string[9:16]
+        red = self.dna_string[0:8]
+        blue = self.dna_string[8:16]
         return (int(red, 2), 0, int(blue, 2))
 
     def offspring_with(self, other_chromosome):
