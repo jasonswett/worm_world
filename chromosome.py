@@ -5,8 +5,8 @@ class Chromosome:
     # Two colors, 8 bits each
 
     NUMBER_OF_DIRECTION_BITS = 2
-    NUMBER_OF_DISTANCE_BITS = 2
-    NUMBER_OF_MOVES = 8
+    NUMBER_OF_DISTANCE_BITS = 3
+    NUMBER_OF_MOVES = 16
     # Movement pattern:
     # - Direction: 2 bits
     # - Distance: 2 bits
