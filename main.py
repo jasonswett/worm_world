@@ -23,10 +23,14 @@ def main():
 
     time.sleep(2)
 
+    world_time = 0
+
     while True:
+        world_time += 1
         cell_screen.clear()
 
         for food_cell in cell_screen.food_cells:
+            food_cell.move()
             cell_screen.draw_cell(food_cell)
 
         for organism in cell_screen.organisms:
