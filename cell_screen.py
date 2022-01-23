@@ -70,3 +70,12 @@ class CellScreen:
             cells.append(cell)
 
         return cells
+
+    def food_cell_at(self, position):
+        x = position[0]
+        y = position[1]
+
+        for food_cell in self.food_cells:
+            if food_cell.x == x and food_cell.y == y:
+                return food_cell
+        return None

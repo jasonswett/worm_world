@@ -67,6 +67,11 @@ class Organism:
             y = self.youngest_cell().y + y_offset
             cell = Cell(x, y, self.color, 0)
 
+            food_cell = self.cell_screen.food_cell_at((cell.x, cell.y))
+            if food_cell != None:
+                self.eat(food_cell)
+                return
+
             if self.cell_screen.space_available(cell):
                 self.age_all_cells()
                 self.cells.append(cell)
