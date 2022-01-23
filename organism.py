@@ -10,9 +10,9 @@ class Organism:
         self.alive = True
 
         self.color = (
-            random.randint(0, 255),
-            random.randint(0, 255),
-            random.randint(0, 255)
+            random.randint(100, 255),
+            0,
+            random.randint(100, 255)
         )
 
         self.x = position[0]
