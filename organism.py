@@ -34,14 +34,12 @@ class Organism:
             self.die()
 
     def advance(self):
-        if len(self.cells) <= 3:
-            self.die()
-
         eatable_food_cell = self.eatable_food_cell()
 
         if eatable_food_cell != None:
             self.eat(eatable_food_cell)
 
+        self.remove_cell(self.oldest_cell())
         self.add_new_cell_at_head()
 
     def eatable_food_cell(self):
@@ -62,7 +60,6 @@ class Organism:
         while True:
             number_of_attempts_to_find_unoccupied_space += 1
             if number_of_attempts_to_find_unoccupied_space >= 100:
-                self.convert_cell_to_food(self.oldest_cell())
                 return
 
             x_offset = self.offset()
@@ -81,7 +78,6 @@ class Organism:
                 return
 
             if self.cell_screen.space_available(cell):
-                self.remove_cell(self.oldest_cell())
                 self.age_all_cells()
                 self.cells.append(cell)
                 return
@@ -132,8 +128,3 @@ class Organism:
         for cell in self.cells:
             food_cell = FoodCell((cell.x, cell.y))
             self.cell_screen.food_cells.append(food_cell)
-
-    def convert_cell_to_food(self, cell):
-        self.cells.remove(cell)
-        food_cell = FoodCell((self.cell_screen.random_x(), self.cell_screen.random_y()))
-        self.cell_screen.food_cells.append(food_cell)

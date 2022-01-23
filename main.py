@@ -13,8 +13,8 @@ from chromosome import Chromosome
 
 def main():
     SCREEN_WIDTH = 60
-    NUMBER_OF_ORGANISMS = 30
-    NUMBER_OF_FOOD_CELLS = 50
+    NUMBER_OF_ORGANISMS = 20
+    NUMBER_OF_FOOD_CELLS = 100
 
     pygame.init()
 
