@@ -1,8 +1,6 @@
 import random
 from cell import Cell
-from hard_cell import HardCell
-from soft_cell import SoftCell
-from blank_cell import BlankCell
+from food_cell import FoodCell
 from chromosome import Chromosome
 
 class Organism:
@@ -56,7 +54,7 @@ class Organism:
         while True:
             number_of_attempts_to_find_unoccupied_space += 1
             if number_of_attempts_to_find_unoccupied_space >= 100:
-                self.die()
+                self.die(cell_screen)
                 return
 
             x_offset = self.offset()
@@ -113,5 +111,10 @@ class Organism:
         for cell in self.cells:
             cell.age = cell.age + 1
 
-    def die(self):
+    def die(self, cell_screen):
         self.alive = False
+
+        for cell in self.cells:
+            food_cell = FoodCell((cell.x, cell.y))
+            #food_cell = FoodCell((0, 0))
+            cell_screen.food_cells.append(food_cell)

@@ -9,17 +9,17 @@ from chromosome import Chromosome
 
 def main():
     SCREEN_WIDTH = 60
-    NUMBER_OF_ORGANISMS = 8
-    NUMBER_OF_FOOD_CELLS = 80
+    NUMBER_OF_ORGANISMS = 10
+    NUMBER_OF_FOOD_CELLS = 100
 
     pygame.init()
 
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
     for i in range(0, NUMBER_OF_ORGANISMS):
-        WORM_SIZE = random.randint(4, 20)
-        x = i * 10
-        y = random.randint(0, 20)
+        WORM_SIZE = random.randint(3, 8)
+        x = cell_screen.random_x()
+        y = cell_screen.random_y()
         cell_screen.organisms.append(Organism((x, y), WORM_SIZE))
 
     for i in range(0, NUMBER_OF_FOOD_CELLS):
