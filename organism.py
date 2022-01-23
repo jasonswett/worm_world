@@ -30,9 +30,24 @@ class Organism:
             self.cells.append(cell)
 
     def advance(self, cell_screen):
+        eatable_food_cell = self.eatable_food_cell(cell_screen)
+
+        if eatable_food_cell != None:
+            self.eat(eatable_food_cell, cell_screen)
+
         self.remove_cell(self.oldest_cell())
         self.age_all_cells()
         self.add_new_cell_at_head(cell_screen)
+
+    def eatable_food_cell(self, cell_screen):
+        for cell in self.cells:
+            food_cell = cell.adjacent_food_cell(cell_screen)
+            if food_cell != None:
+                return food_cell
+        return None
+
+    def eat(self, food_cell, cell_screen):
+        cell_screen.food_cells.remove(food_cell)
 
     def add_new_cell_at_head(self, cell_screen):
         number_of_attempts_to_find_unoccupied_space = 0

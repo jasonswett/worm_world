@@ -6,24 +6,10 @@ class Cell:
         self.age = age
 
     def occupies_same_space_as(self, other_cell):
-        if self.blank() or other_cell.blank():
-            return False
         return self.x == other_cell.x and self.y == other_cell.y
 
-    def blank(self):
-        return False
-
-    def poison(self):
-        return False
-
-    def hurt_by_poison(self):
-        return False
-
-    def food(self):
-        return False
-
-    def helped_by_food(self):
-        return False
-
-    def soft(self):
-        return False
+    def adjacent_food_cell(self, cell_screen):
+        for food_cell in cell_screen.food_cells:
+            if abs(food_cell.x - self.x) <= 1 and abs(food_cell.y - self.y) <= 1:
+                return food_cell
+        return None
