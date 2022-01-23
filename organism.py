@@ -53,6 +53,14 @@ class Organism:
         self.add_new_cell_at_head()
         self._age -= 5
 
+    def movement(self):
+        #x_offset = self.offset()
+        #if x_offset == 0:
+        #    y_offset = [-1, 1][random.randint(0, 1)]
+        #else:
+        #    y_offset = 0
+        return self.chromosome.next_movement()
+
     def add_new_cell_at_head(self):
         number_of_attempts_to_find_unoccupied_space = 0
 
@@ -61,14 +69,10 @@ class Organism:
             if number_of_attempts_to_find_unoccupied_space >= 100:
                 return
 
-            x_offset = self.offset()
-            if x_offset == 0:
-                y_offset = [-1, 1][random.randint(0, 1)]
-            else:
-                y_offset = 0
+            movement = self.movement()
 
-            x = self.youngest_cell().x + x_offset
-            y = self.youngest_cell().y + y_offset
+            x = self.youngest_cell().x + movement[0]
+            y = self.youngest_cell().y + movement[1]
             cell = Cell(x, y, self.color, 0)
 
             food_cell = self.cell_screen.food_cell_at((cell.x, cell.y))

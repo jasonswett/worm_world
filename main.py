@@ -11,7 +11,7 @@ def main():
     SCREEN_WIDTH = 60
     MAX_ALLOWED_ORGANISMS = 10
     MIN_ALLOWED_ORGANISMS = 2
-    NUMBER_OF_FOOD_CELLS = 100
+    NUMBER_OF_FOOD_CELLS = 200
 
     pygame.init()
 
@@ -55,7 +55,7 @@ def main():
         time.sleep(0.05)
 
 def add_organism(cell_screen, chromosome):
-    worm_size = random.randint(4, 12)
+    worm_size = 4
     x = cell_screen.random_x()
     y = 0
 
