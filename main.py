@@ -11,13 +11,13 @@ def main():
     pygame.init()
     SCREEN_WIDTH = 60
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
-    time.sleep(1)
+    time.sleep(2)
 
-    MAX_ALLOWED_ORGANISMS = 30
+    MAX_ALLOWED_ORGANISMS = 6
     for i in range(0, MAX_ALLOWED_ORGANISMS):
         WORM_SIZE = random.randint(4, 20)
-        x = random.randint(0, cell_screen.width - 1)
-        y = random.randint(0, cell_screen.height - WORM_SIZE - 1)
+        x = i * 10
+        y = random.randint(0, 20)
         cell_screen.organisms.append(Organism((x, y), WORM_SIZE))
 
     while True:
@@ -29,6 +29,6 @@ def main():
                 cell_screen.draw_organism(organism)
 
         pygame.display.update()
-        time.sleep(0.05)
+        time.sleep(0.15)
 
 main()
