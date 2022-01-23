@@ -11,7 +11,6 @@ def main():
     SCREEN_WIDTH = 60
     MAX_ALLOWED_ORGANISMS = 10
     MIN_ALLOWED_ORGANISMS = 2
-    NUMBER_OF_FOOD_CELLS = 200
 
     pygame.init()
 
@@ -19,12 +18,8 @@ def main():
 
     for i in range(0, MAX_ALLOWED_ORGANISMS):
         chromosome = Chromosome('')
-        add_organism(cell_screen, chromosome)
-
-    for i in range(0, NUMBER_OF_FOOD_CELLS):
-        x = cell_screen.random_x()
-        y = cell_screen.random_y()
-        cell_screen.food_cells.append(FoodCell((x, y)))
+        provide_some_food(cell_screen)
+        add_organism(cell_screen, chromosome, i)
 
     time.sleep(2)
 
@@ -48,16 +43,19 @@ def main():
         if len(cell_screen.organisms) <= MIN_ALLOWED_ORGANISMS:
             parents = cell_screen.organisms
 
+            i = 0
             while len(cell_screen.organisms) < MAX_ALLOWED_ORGANISMS:
-                add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
+                provide_some_food(cell_screen)
+                add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome), i)
+                i += 1
 
         pygame.display.update()
         time.sleep(0.05)
 
-def add_organism(cell_screen, chromosome):
+def add_organism(cell_screen, chromosome, i):
     worm_size = 4
-    x = cell_screen.random_x()
-    y = cell_screen.random_y()
+    x = i * 5
+    y = 10
 
     organism = Organism(
         cell_screen,
@@ -67,5 +65,12 @@ def add_organism(cell_screen, chromosome):
     )
 
     cell_screen.organisms.append(organism)
+
+def provide_some_food(cell_screen):
+    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 10
+    for i in range(0, NUMBER_OF_FOOD_CELLS_PER_ORGANISM):
+        x = cell_screen.random_x()
+        y = cell_screen.random_y()
+        cell_screen.food_cells.append(FoodCell((x, y)))
 
 main()

@@ -1,7 +1,7 @@
 import random
 
 class Chromosome:
-    NUMBER_OF_COLOR_BITS = 16
+    NUMBER_OF_COLOR_BITS = 24
     # Two colors, 8 bits each
 
     NUMBER_OF_DIRECTION_BITS = 2
@@ -67,7 +67,8 @@ class Chromosome:
     def color(self):
         red = self.dna_string[0:8]
         blue = self.dna_string[8:16]
-        return (int(red, 2), 0, int(blue, 2))
+        green = self.dna_string[16:24]
+        return (int(red, 2), int(green, 2), int(blue, 2))
 
     def offspring_with(self, other_chromosome):
         midway_point = random.randint(0, len(self.dna_string))

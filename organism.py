@@ -75,6 +75,7 @@ class Organism:
                 movement = self.random_movement()
 
             if number_of_attempts_to_find_unoccupied_space >= 100:
+                self.die()
                 return
 
             x = self.youngest_cell().x + movement[0]
