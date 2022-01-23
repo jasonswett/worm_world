@@ -38,8 +38,7 @@ class Organism:
         if eatable_food_cell != None:
             self.eat(eatable_food_cell)
 
-        self.remove_cell(self.oldest_cell())
-        self.add_new_cell_at_head()
+        self.add_new_cell_at_head(self.movement(), False)
 
     def eatable_food_cell(self):
         for cell in self.cells:
@@ -50,7 +49,7 @@ class Organism:
 
     def eat(self, food_cell):
         self.cell_screen.food_cells.remove(food_cell)
-        self.add_new_cell_at_head()
+        self.add_new_cell_at_head(self.random_movement(), True)
         self._age -= 5
 
     def movement(self):
@@ -64,9 +63,11 @@ class Organism:
         else:
             return [0, random_offset]
 
-    def add_new_cell_at_head(self):
+    def add_new_cell_at_head(self, movement, grow):
         number_of_attempts_to_find_unoccupied_space = 0
-        movement = self.movement()
+
+        if movement[0] == 0 and movement[1] == 0:
+            return
 
         while True:
             number_of_attempts_to_find_unoccupied_space += 1
@@ -89,6 +90,8 @@ class Organism:
 
             if self.cell_screen.space_available(cell):
                 self.age_all_cells()
+                if not(grow):
+                    self.remove_cell(self.oldest_cell())
                 self.cells.append(cell)
                 return
 
