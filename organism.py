@@ -4,7 +4,7 @@ from food_cell import FoodCell
 from chromosome import Chromosome
 
 class Organism:
-    def __init__(self, position, size):
+    def __init__(self, cell_screen, position, size):
         self.alive = True
 
         self.color = (
@@ -13,6 +13,7 @@ class Organism:
             random.randint(100, 255)
         )
 
+        self.cell_screen = cell_screen
         self.x = position[0]
         self.y = position[1]
         self.size = size
@@ -27,33 +28,33 @@ class Organism:
             cell = Cell(self.x, self.y + y, self.color, ending_point - y)
             self.cells.append(cell)
 
-    def advance(self, cell_screen):
-        eatable_food_cell = self.eatable_food_cell(cell_screen)
+    def advance(self):
+        eatable_food_cell = self.eatable_food_cell()
 
         if eatable_food_cell != None:
-            self.eat(eatable_food_cell, cell_screen)
+            self.eat(eatable_food_cell)
 
         self.remove_cell(self.oldest_cell())
-        self.add_new_cell_at_head(cell_screen)
+        self.add_new_cell_at_head()
 
-    def eatable_food_cell(self, cell_screen):
+    def eatable_food_cell(self):
         for cell in self.cells:
-            food_cell = cell.adjacent_food_cell(cell_screen)
+            food_cell = cell.adjacent_food_cell(self.cell_screen)
             if food_cell != None:
                 return food_cell
         return None
 
-    def eat(self, food_cell, cell_screen):
-        cell_screen.food_cells.remove(food_cell)
-        self.add_new_cell_at_head(cell_screen)
+    def eat(self, food_cell):
+        self.cell_screen.food_cells.remove(food_cell)
+        self.add_new_cell_at_head()
 
-    def add_new_cell_at_head(self, cell_screen):
+    def add_new_cell_at_head(self):
         number_of_attempts_to_find_unoccupied_space = 0
 
         while True:
             number_of_attempts_to_find_unoccupied_space += 1
             if number_of_attempts_to_find_unoccupied_space >= 100:
-                self.die(cell_screen)
+                self.die()
                 return
 
             x_offset = self.offset()
@@ -66,7 +67,7 @@ class Organism:
             y = self.youngest_cell().y + y_offset
             cell = Cell(x, y, self.color, 0)
 
-            if cell_screen.space_available(cell):
+            if self.cell_screen.space_available(cell):
                 self.age_all_cells()
                 self.cells.append(cell)
                 return
@@ -111,9 +112,9 @@ class Organism:
         for cell in self.cells:
             cell.age = cell.age + 1
 
-    def die(self, cell_screen):
+    def die(self):
         self.alive = False
 
         for cell in self.cells:
             food_cell = FoodCell((cell.x, cell.y))
-            cell_screen.food_cells.append(food_cell)
+            self.cell_screen.food_cells.append(food_cell)

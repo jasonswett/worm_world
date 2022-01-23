@@ -20,7 +20,7 @@ def main():
         WORM_SIZE = random.randint(3, 8)
         x = i * 5
         y = 0
-        cell_screen.organisms.append(Organism((x, y), WORM_SIZE))
+        cell_screen.organisms.append(Organism(cell_screen, (x, y), WORM_SIZE))
 
     for i in range(0, NUMBER_OF_FOOD_CELLS):
         x = cell_screen.random_x()
@@ -37,7 +37,7 @@ def main():
 
         for organism in cell_screen.organisms:
             if organism.alive:
-                organism.advance(cell_screen)
+                organism.advance()
                 cell_screen.draw_organism(organism)
 
         pygame.display.update()
