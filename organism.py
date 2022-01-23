@@ -54,7 +54,6 @@ class Organism:
         while True:
             number_of_attempts_to_find_unoccupied_space += 1
             if number_of_attempts_to_find_unoccupied_space >= 100:
-                self.die()
                 return
 
             x_offset = self.offset()
