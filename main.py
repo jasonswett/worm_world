@@ -21,10 +21,10 @@ def main():
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
     for i in range(0, NUMBER_OF_ORGANISMS):
-        WORM_SIZE = random.randint(4, 20)
+        worm_size = random.randint(4, 20)
         x = i * 2
         y = 0
-        cell_screen.organisms.append(Organism(cell_screen, (x, y), WORM_SIZE))
+        cell_screen.organisms.append(Organism(cell_screen, (x, y), worm_size))
 
     for i in range(0, NUMBER_OF_FOOD_CELLS):
         x = cell_screen.random_x()

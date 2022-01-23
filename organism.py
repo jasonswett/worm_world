@@ -34,6 +34,9 @@ class Organism:
             self.die()
 
     def advance(self):
+        if len(self.cells) <= 3:
+            self.die()
+
         eatable_food_cell = self.eatable_food_cell()
 
         if eatable_food_cell != None:
