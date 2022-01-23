@@ -4,14 +4,15 @@ from food_cell import FoodCell
 from chromosome import Chromosome
 
 class Organism:
-    def __init__(self, cell_screen, position, size, color):
+    def __init__(self, cell_screen, position, size, chromosome):
         self._age = 0
 
         self.cell_screen = cell_screen
         self.x = position[0]
         self.y = position[1]
         self.size = size
-        self.color = color
+        self.chromosome = chromosome
+        self.color = self.chromosome.color()
 
         self.cells = []
         starting_point = self.y

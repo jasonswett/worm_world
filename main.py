@@ -7,22 +7,19 @@ from poison_cell import PoisonCell
 from organism import Organism
 from chromosome import Chromosome
 
-# NEXT:
-# Make it so that when two worms touch and they are both
-# sufficiently "healthy", they mate
-
 def main():
     SCREEN_WIDTH = 60
-    NUMBER_OF_ORGANISMS = 20
+    MAX_ALLOWED_ORGANISMS = 10
+    MIN_ALLOWED_ORGANISMS = 2
     NUMBER_OF_FOOD_CELLS = 100
 
     pygame.init()
 
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    for i in range(0, NUMBER_OF_ORGANISMS):
-        chromosome = Chromosome()
-        add_organism(cell_screen, chromosome, i)
+    for i in range(0, MAX_ALLOWED_ORGANISMS):
+        chromosome = Chromosome('')
+        add_organism(cell_screen, chromosome)
 
     for i in range(0, NUMBER_OF_FOOD_CELLS):
         x = cell_screen.random_x()
@@ -48,19 +45,25 @@ def main():
             organism.advance()
             cell_screen.draw_organism(organism)
 
+        if len(cell_screen.organisms) <= MIN_ALLOWED_ORGANISMS:
+            parents = cell_screen.organisms
+
+            while len(cell_screen.organisms) < MAX_ALLOWED_ORGANISMS:
+                add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
+
         pygame.display.update()
         time.sleep(0.05)
 
-def add_organism(cell_screen, chromosome, i):
-    worm_size = random.randint(4, 20)
-    x = i * 2
+def add_organism(cell_screen, chromosome):
+    worm_size = random.randint(4, 12)
+    x = cell_screen.random_x()
     y = 0
 
     organism = Organism(
         cell_screen,
         (x, y),
         worm_size,
-        chromosome.color()
+        chromosome
     )
 
     cell_screen.organisms.append(organism)

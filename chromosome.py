@@ -1,11 +1,12 @@
 import random
 
 class Chromosome:
-    def __init__(self):
-        self.dna_string = ''
+    def __init__(self, dna_string):
+        self.dna_string = dna_string
 
-        for i in range(0, 16):
-            self.dna_string += str(random.randint(0, 1))
+        if self.dna_string == '':
+            for i in range(0, 16):
+                self.dna_string += str(random.randint(0, 1))
 
         print(self.dna_string)
 
@@ -23,7 +24,7 @@ class Chromosome:
         if random.randint(0, 1) == 0:
             dna_string = self.mutated_dna_string(dna_string)
 
-        return Chromosome(self.width, self.length, dna_string)
+        return Chromosome(dna_string)
 
     def mutated_dna_string(self, dna_string):
         new_dna_string = dna_string
