@@ -56,11 +56,17 @@ class CellScreen:
         for other_cell in self.other_cells():
             if cell.occupies_same_space_as(other_cell):
                 return False
+
         return True
 
     def other_cells(self):
         cells = []
+
         for organism in self.organisms:
             for cell in organism.cells:
                 cells.append(cell)
+
+        for cell in self.food_cells:
+            cells.append(cell)
+
         return cells

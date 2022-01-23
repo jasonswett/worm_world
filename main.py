@@ -10,7 +10,7 @@ from chromosome import Chromosome
 def main():
     SCREEN_WIDTH = 60
     NUMBER_OF_ORGANISMS = 8
-    NUMBER_OF_FOOD_CELLS = 20
+    NUMBER_OF_FOOD_CELLS = 80
 
     pygame.init()
     time.sleep(2)
@@ -40,6 +40,6 @@ def main():
                 cell_screen.draw_organism(organism)
 
         pygame.display.update()
-        time.sleep(0.15)
+        time.sleep(0.05)
 
 main()
