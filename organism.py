@@ -77,6 +77,7 @@ class Organism:
 
             if number_of_attempts_to_find_unoccupied_space >= 100:
                 self.age()
+                self.reverse()
                 return
 
             x = self.youngest_cell().x + movement[0]
@@ -123,6 +124,15 @@ class Organism:
     def age_all_cells(self):
         for cell in self.cells:
             cell.age = cell.age + 1
+
+    def reverse(self):
+        new_cells = []
+        age = 0
+        for cell in reversed(self.cells):
+            cell.age = age
+            new_cells.append(cell)
+            age += 1
+        self.cells = new_cells
 
     def die(self):
         self.cell_screen.organisms.remove(self)
