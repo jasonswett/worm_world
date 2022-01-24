@@ -18,11 +18,13 @@ class Organism:
         starting_point = self.y
         ending_point = self.y + self.size
 
-        self.bias_toward_straight_movement = random.uniform(0, 1)
-
         for y in range(starting_point, ending_point):
             cell = Cell(self.x, self.y + y, self.color, ending_point - y)
+            cell.age = y
             self.cells.append(cell)
+
+        if random.randint(0, 1) == 0:
+            self.reverse()
 
     def age(self):
         self._age += 1
