@@ -50,7 +50,7 @@ class Organism:
     def eat(self, food_cell):
         self.cell_screen.food_cells.remove(food_cell)
         self.add_new_cell_at_head(self.random_movement(), True)
-        self._age -= 5
+        self._age -= 10
 
     def movement(self):
         return self.chromosome.next_movement()

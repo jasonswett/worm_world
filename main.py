@@ -8,7 +8,7 @@ from organism import Organism
 from chromosome import Chromosome
 
 def main():
-    SCREEN_WIDTH = 60
+    SCREEN_WIDTH = 80
     MAX_ALLOWED_ORGANISMS = 10
     MIN_ALLOWED_ORGANISMS = 2
 
@@ -51,8 +51,8 @@ def main():
 
 def add_organism(cell_screen, chromosome, i):
     worm_size = 4
-    x = i * 5
-    y = 10
+    x = 20 + (i * 5)
+    y = 20
 
     organism = Organism(
         cell_screen,
@@ -64,7 +64,7 @@ def add_organism(cell_screen, chromosome, i):
     cell_screen.organisms.append(organism)
 
 def provide_some_food(cell_screen):
-    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 10
+    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 1
     for i in range(0, NUMBER_OF_FOOD_CELLS_PER_ORGANISM):
         x = cell_screen.random_x()
         y = cell_screen.random_y()

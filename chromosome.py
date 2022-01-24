@@ -4,7 +4,7 @@ class Chromosome:
     NUMBER_OF_COLOR_BITS = 24
     # Two colors, 8 bits each
 
-    NUMBER_OF_DIRECTION_BITS = 3
+    NUMBER_OF_DIRECTION_BITS = 4
     NUMBER_OF_DISTANCE_BITS = 3
     NUMBER_OF_MOVES = 16
     # Movement pattern:
@@ -60,10 +60,18 @@ class Chromosome:
             1: [0, 1],
             2: [1, 0],
             3: [-1, 0],
-            4: [0, 0],
-            5: [0, 0],
-            6: [0, 0],
-            7: [0, 0]
+            4: [0, -1],
+            5: [0, 1],
+            6: [1, 0],
+            7: [-1, 0],
+            8: [0, -1],
+            9: [0, 1],
+            10: [1, 0],
+            11: [-1, 0],
+            12: [0, 0],
+            13: [0, 0],
+            14: [0, 0],
+            15: [0, 0],
         }
 
         return direction_map[direction]

@@ -4,11 +4,13 @@ from cell import Cell
 class FoodCell(Cell):
     def __init__(self, position):
         self.color = (0, 255, 0)
+        self.age = 0
         self.x = position[0]
         self.y = position[1]
 
     def move(self):
-        if random.randint(0, 9) != 0:
+        self.age += 1
+        if random.randint(0, 9) != 0 or self.age < 100:
             return
         movement = self.random_movement()
         self.x += movement[0]
