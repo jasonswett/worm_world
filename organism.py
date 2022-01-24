@@ -84,7 +84,7 @@ class Organism:
 
             x = self.youngest_cell().x + movement[0]
             y = self.youngest_cell().y + movement[1]
-            cell = Cell(x, y, self.color, 0)
+            cell = Cell(self.cell_screen.wrapped_x(x), self.cell_screen.wrapped_y(y), self.color, 0)
 
             food_cell = self.cell_screen.food_cell_at((cell.x, cell.y))
             if food_cell != None:

@@ -7,6 +7,10 @@ from poison_cell import PoisonCell
 from organism import Organism
 from chromosome import Chromosome
 
+# To do next:
+# - Make it so when worms touch, they reproduce
+# - Make it so when something hits the edge of the screen, it "wraps"
+
 def main():
     SCREEN_WIDTH = 80
     MAX_ALLOWED_ORGANISMS = 10
