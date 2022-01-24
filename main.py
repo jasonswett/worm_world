@@ -42,7 +42,6 @@ def main():
 
             i = 0
             while len(cell_screen.organisms) < MAX_ALLOWED_ORGANISMS:
-                provide_some_food(cell_screen)
                 add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome), i)
                 i += 1
 
@@ -64,7 +63,7 @@ def add_organism(cell_screen, chromosome, i):
     cell_screen.organisms.append(organism)
 
 def provide_some_food(cell_screen):
-    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 1
+    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 10
     for i in range(0, NUMBER_OF_FOOD_CELLS_PER_ORGANISM):
         x = cell_screen.random_x()
         y = cell_screen.random_y()
