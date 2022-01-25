@@ -50,9 +50,12 @@ class Organism:
         return None
 
     def eat(self, food_cell):
+        if self._age <= 0:
+            return
+
         self.cell_screen.food_cells.remove(food_cell)
         self.add_new_cell_at_head(self.random_movement(), True)
-        self._age -= 10
+        self._age -= 5
 
     def movement(self):
         return self.chromosome.next_movement()
