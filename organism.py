@@ -4,8 +4,8 @@ from food_cell import FoodCell
 from chromosome import Chromosome
 
 class Organism:
-    REPRODUCTION_THRESHOLD = 4
-    DEATH_AGE = 100
+    REPRODUCTION_THRESHOLD = 8
+    DEATH_AGE = 500
 
     def __init__(self, cell_screen, position, size, chromosome):
         self._age = 0

@@ -13,7 +13,7 @@ from chromosome import Chromosome
 
 def main():
     SCREEN_WIDTH = 80
-    MAX_ALLOWED_ORGANISMS = 6
+    MAX_ALLOWED_ORGANISMS = 10
 
     pygame.init()
 
@@ -63,7 +63,7 @@ def add_organism(cell_screen, chromosome):
     cell_screen.organisms.append(organism)
 
 def provide_some_food(cell_screen):
-    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 40
+    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 20
     for i in range(0, NUMBER_OF_FOOD_CELLS_PER_ORGANISM):
         x = cell_screen.random_x()
         y = cell_screen.random_y()
