@@ -95,3 +95,11 @@ class CellScreen:
             if food_cell.x == x and food_cell.y == y:
                 return food_cell
         return None
+
+    def adjacent_organism(self, organism):
+        for other_organism in self.organisms:
+            for other_cell in other_organism.cells:
+                for cell in organism.cells:
+                    if other_cell.adjacent_to(cell) and organism != other_organism:
+                        return other_organism
+        return None

@@ -13,8 +13,7 @@ from chromosome import Chromosome
 
 def main():
     SCREEN_WIDTH = 80
-    MAX_ALLOWED_ORGANISMS = 10
-    MIN_ALLOWED_ORGANISMS = 2
+    MAX_ALLOWED_ORGANISMS = 6
 
     pygame.init()
 
@@ -41,13 +40,14 @@ def main():
             organism.advance()
             cell_screen.draw_organism(organism)
 
-        if len(cell_screen.organisms) <= MIN_ALLOWED_ORGANISMS:
-            parents = cell_screen.organisms
+        pygame.display.update()
 
-            i = 0
-            while len(cell_screen.organisms) < MAX_ALLOWED_ORGANISMS:
-                add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
-                i += 1
+        for organism in cell_screen.organisms:
+            adjacent_organism = cell_screen.adjacent_organism(organism)
+            if adjacent_organism != None and organism.can_reproduce() and adjacent_organism.can_reproduce():
+                for i in range(0, 3):
+                    chromosome = organism.reproduce_with(adjacent_organism)
+                    add_organism(cell_screen, chromosome)
 
         pygame.display.update()
         time.sleep(0.05)
@@ -63,7 +63,7 @@ def add_organism(cell_screen, chromosome):
     cell_screen.organisms.append(organism)
 
 def provide_some_food(cell_screen):
-    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 10
+    NUMBER_OF_FOOD_CELLS_PER_ORGANISM = 40
     for i in range(0, NUMBER_OF_FOOD_CELLS_PER_ORGANISM):
         x = cell_screen.random_x()
         y = cell_screen.random_y()

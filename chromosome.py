@@ -81,6 +81,7 @@ class Chromosome:
         blue = self.dna_string[8:16]
         green = self.dna_string[16:24]
         return (int(red, 2), int(green, 2), int(blue, 2))
+        #return (0, int(green, 2), int(blue, 2))
 
     def offspring_with(self, other_chromosome):
         midway_point = random.randint(0, len(self.dna_string))

@@ -4,8 +4,12 @@ from food_cell import FoodCell
 from chromosome import Chromosome
 
 class Organism:
+    REPRODUCTION_THRESHOLD = 4
+    DEATH_AGE = 100
+
     def __init__(self, cell_screen, position, size, chromosome):
         self._age = 0
+        self.reproduction_clock = 0
 
         self.cell_screen = cell_screen
         self.x = position[0]
@@ -28,7 +32,7 @@ class Organism:
 
     def age(self):
         self._age += 1
-        if self._age >= 100:
+        if self._age >= self.DEATH_AGE:
             self.die()
 
     def advance(self):
@@ -55,7 +59,8 @@ class Organism:
 
         self.cell_screen.food_cells.remove(food_cell)
         self.add_new_cell_at_head(self.random_movement(), True)
-        self._age -= 5
+        self._age -= 20
+        self.advance_reproduction_clock()
 
     def movement(self):
         return self.chromosome.next_movement()
@@ -138,6 +143,23 @@ class Organism:
             new_cells.append(cell)
             age += 1
         self.cells = new_cells
+
+    def advance_reproduction_clock(self):
+        if self.reproduction_clock >= self.REPRODUCTION_THRESHOLD:
+            #self.color = (255, 0, 0)
+            self.color = self.color
+        else:
+            self.reproduction_clock += 1
+
+    def can_reproduce(self):
+        return self.reproduction_clock >= self.REPRODUCTION_THRESHOLD
+
+    def reproduce_with(self, other_organism):
+        self.color = self.chromosome.color()
+        other_organism.color = other_organism.chromosome.color()
+        self.reproduction_clock = 0
+        other_organism.reproduction_clock = 0
+        return self.chromosome.offspring_with(other_organism.chromosome)
 
     def die(self):
         self.cell_screen.organisms.remove(self)

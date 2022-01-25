@@ -13,3 +13,12 @@ class Cell:
             if abs(food_cell.x - self.x) <= 1 and abs(food_cell.y - self.y) <= 1:
                 return food_cell
         return None
+
+    def adjacent_to(self, other_cell):
+        x_distance = abs(other_cell.x - self.x)
+        y_distance = abs(other_cell.y - self.y)
+        if x_distance != 0 and y_distance != 0:
+            return False
+        if x_distance == 0 and y_distance == 0:
+            return False
+        return x_distance <= 1 and y_distance <= 1
