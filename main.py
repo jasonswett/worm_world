@@ -23,7 +23,7 @@ def main():
     for i in range(0, MAX_ALLOWED_ORGANISMS):
         chromosome = Chromosome('')
         provide_some_food(cell_screen)
-        add_organism(cell_screen, chromosome, i)
+        add_organism(cell_screen, chromosome)
 
     time.sleep(2)
 
@@ -46,21 +46,17 @@ def main():
 
             i = 0
             while len(cell_screen.organisms) < MAX_ALLOWED_ORGANISMS:
-                add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome), i)
+                add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
                 i += 1
 
         pygame.display.update()
         time.sleep(0.05)
 
-def add_organism(cell_screen, chromosome, i):
-    worm_size = 4
-    x = 20 + (i * 5)
-    y = 20
-
+def add_organism(cell_screen, chromosome):
     organism = Organism(
         cell_screen,
-        (x, y),
-        worm_size,
+        (cell_screen.random_x(), cell_screen.random_y()),
+        4,
         chromosome
     )
 
