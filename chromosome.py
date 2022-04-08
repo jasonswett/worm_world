@@ -2,8 +2,6 @@ import random
 
 class Chromosome:
     NUMBER_OF_COLOR_BITS = 24
-    # Two colors, 8 bits each
-
     NUMBER_OF_DIRECTION_BITS = 4
     NUMBER_OF_DISTANCE_BITS = 3
     NUMBER_OF_MOVES = 16
