@@ -8,12 +8,12 @@ from organism import Organism
 from chromosome import Chromosome
 
 def main():
-    SCREEN_WIDTH = 80
+    SCREEN_WIDTH = 100
     MAX_ALLOWED_ORGANISMS = 10
 
     pygame.init()
 
-    cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
+    cell_screen = CellScreen(SCREEN_WIDTH, int(SCREEN_WIDTH * 0.618))
 
     for i in range(0, MAX_ALLOWED_ORGANISMS):
         chromosome = Chromosome('')
