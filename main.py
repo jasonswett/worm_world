@@ -3,7 +3,6 @@ from pygame.locals import *
 from cell_screen import CellScreen
 from cell import Cell
 from food_cell import FoodCell
-from poison_cell import PoisonCell
 from organism import Organism
 from chromosome import Chromosome
 
