@@ -19,13 +19,16 @@ class Organism:
         self.color = self.chromosome.color()
 
         self.cells = []
-        starting_point = self.y
-        ending_point = self.y + self.size
+        y_starting_point = self.y
+        y_ending_point = self.y + self.size
+        x_starting_point = self.x
+        x_ending_point = self.x + self.size
 
-        for y in range(starting_point, ending_point):
-            cell = Cell(self.x, self.y + y, self.color, ending_point - y)
-            cell.age = y
-            self.cells.append(cell)
+        for y in range(y_starting_point, y_ending_point):
+            for x in range(x_starting_point, x_ending_point):
+                cell = Cell(self.x + x, self.y + y, self.color, y_ending_point - y)
+                cell.age = y
+                self.cells.append(cell)
 
         if random.randint(0, 1) == 0:
             self.reverse()
@@ -36,15 +39,49 @@ class Organism:
             self.die()
 
     def advance(self):
-        if len(self.cells) <= 3:
-            self.die()
+        cell = self.random_edge_cell();
+        self.remove_cell(cell)
+#        if len(self.cells) <= 3:
+#            self.die()
+#
+#        eatable_food_cell = self.eatable_food_cell()
+#
+#        if eatable_food_cell != None:
+#            self.eat(eatable_food_cell)
+#
+#        self.add_new_cell_at_head(self.movement(), False)
 
-        eatable_food_cell = self.eatable_food_cell()
+    def random_edge_cell(self):
+        return self.edge_cells()[random.randint(0, len(self.edge_cells()) - 1)]
 
-        if eatable_food_cell != None:
-            self.eat(eatable_food_cell)
+    def edge_cells(self):
+        cells = []
+        for cell in self.cells:
+            if self.faces_outside(cell):
+                cells.append(cell)
+        return cells
 
-        self.add_new_cell_at_head(self.movement(), False)
+    def faces_outside(self, cell):
+        if self.faces_outside_toward(cell, 0, -1):
+            return True
+        if self.faces_outside_toward(cell, 1, 0):
+            return True
+        if self.faces_outside_toward(cell, 0, 1):
+            return True
+        if self.faces_outside_toward(cell, -1, 0):
+            return True
+        return False
+
+    def faces_outside_toward(self, cell, x, y):
+        if self.has_cell_at(cell.x + x, cell.y + y):
+            return False
+        return True
+
+    def has_cell_at(self, x, y):
+        for cell in self.cells:
+            if cell.x == x and cell.y == y:
+                return True
+        return False
 
     def eatable_food_cell(self):
         for cell in self.cells:

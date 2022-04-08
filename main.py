@@ -45,7 +45,7 @@ def main():
                     add_organism(cell_screen, chromosome)
 
         pygame.display.update()
-        time.sleep(0.05)
+        time.sleep(0.5)
 
 def add_organism(cell_screen, chromosome):
     organism = Organism(
