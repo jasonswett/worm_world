@@ -40,10 +40,12 @@ class Organism:
             self.die()
 
     def advance(self):
-        cell = self.random_edge_cell();
-
-        if self.is_contiguous_without(cell):
-            self.remove_cell(cell)
+        while True:
+            cell = self.random_edge_cell();
+            if self.is_contiguous_without(cell):
+                self.remove_cell(cell)
+                self.add_new_cell()
+                return
 
     def is_contiguous_without(self, cell_to_be_removed):
         cells = self.cells.copy()
@@ -114,6 +116,20 @@ class Organism:
             return [random_offset, 0]
         else:
             return [0, random_offset]
+
+    def add_new_cell(self):
+        points = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+
+        while True:
+            point = random.choice(points)
+            edge_cell = self.random_edge_cell();
+            x = edge_cell.x + point[0]
+            y = edge_cell.y + point[1]
+            cell = Cell(self.cell_screen.wrapped_x(x), self.cell_screen.wrapped_y(y), self.color, 0)
+
+            if self.cell_screen.space_available(cell):
+                self.cells.append(cell)
+                return
 
     def add_new_cell_at_head(self, movement, grow):
         number_of_attempts_to_find_unoccupied_space = 0

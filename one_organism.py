@@ -10,7 +10,7 @@ def main():
 
     chromosome = Chromosome('')
 
-    organism = Organism(cell_screen, (10, 10), 10, chromosome)
+    organism = Organism(cell_screen, (10, 10), 4, chromosome)
 
     cell_screen.organisms.append(organism)
 
