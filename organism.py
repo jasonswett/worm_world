@@ -41,7 +41,8 @@ class Organism:
 
     def advance(self):
         while True:
-            cell = self.random_edge_cell();
+            points = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+            cell = self.random_edge_cell(points)
             if self.is_contiguous_without(cell):
                 self.remove_cell(cell)
                 self.add_new_cell()
@@ -53,18 +54,17 @@ class Organism:
         cell_set = CellSet(cells)
         return cell_set.is_contiguous()
 
-    def random_edge_cell(self):
-        return self.edge_cells()[random.randint(0, len(self.edge_cells()) - 1)]
+    def random_edge_cell(self, points):
+        return random.choice(self.edge_cells(points))
 
-    def edge_cells(self):
+    def edge_cells(self, points):
         cells = []
         for cell in self.cells:
-            if self.faces_outside(cell):
+            if self.faces_outside(cell, points):
                 cells.append(cell)
         return cells
 
-    def faces_outside(self, cell):
-        points = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+    def faces_outside(self, cell, points):
         for point in points:
             if self.faces_outside_toward(cell, point[0], point[1]):
                 return True
@@ -118,7 +118,7 @@ class Organism:
 
         while True:
             point = random.choice(points)
-            grow_off_of_cell = self.random_edge_cell();
+            grow_off_of_cell = self.random_edge_cell([point])
             x = grow_off_of_cell.x + point[0]
             y = grow_off_of_cell.y + point[1]
             cell = Cell(self.cell_screen.wrapped_x(x), self.cell_screen.wrapped_y(y), self.color, 0)
