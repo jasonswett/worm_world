@@ -118,9 +118,9 @@ class Organism:
 
         while True:
             point = random.choice(points)
-            edge_cell = self.random_edge_cell();
-            x = edge_cell.x + point[0]
-            y = edge_cell.y + point[1]
+            grow_off_of_cell = self.random_edge_cell();
+            x = grow_off_of_cell.x + point[0]
+            y = grow_off_of_cell.y + point[1]
             cell = Cell(self.cell_screen.wrapped_x(x), self.cell_screen.wrapped_y(y), self.color, 0)
 
             if self.cell_screen.space_available(cell):
