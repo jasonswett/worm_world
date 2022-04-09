@@ -51,34 +51,6 @@ class Organism:
         cell_set = CellSet(cells)
         return cell_set.is_contiguous()
 
-    def shares_a_straight_neighbor_with_each_corner_neighbor(self, cells, center_cell):
-        for corner_neighbor in self.corner_neighbors(cells, center_cell):
-            if not(self.shares_straight_neighbor(cells, center_cell, corner_neighbor)):
-                return False
-        if len(self.straight_neighbors(cells, center_cell)) == 0:
-            return False
-        return True
-
-    def corner_neighbors(self, cells, center_cell):
-        neighbors = []
-        points = [(-1, -1), (1, -1), (-1, 1), (1, 1)]
-        center_cell_x = center_cell.x
-        center_cell_y = center_cell.y
-        for point in points:
-            x = center_cell_x + point[0]
-            y = center_cell_y + point[1]
-            neighbor = self.cell_at(cells, x, y)
-            if neighbor is not None:
-                neighbors.append(neighbor)
-        return neighbors
-
-    def shares_straight_neighbor(self, cells, cell_a, cell_b):
-        for neighbor_a in self.straight_neighbors(cells, cell_a):
-            for neighbor_b in self.straight_neighbors(cells, cell_b):
-                if neighbor_a == neighbor_b:
-                    return True
-        return False
-
     def random_edge_cell(self):
         return self.edge_cells()[random.randint(0, len(self.edge_cells()) - 1)]
 
