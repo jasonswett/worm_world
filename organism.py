@@ -115,10 +115,17 @@ class Organism:
 
     def add_new_cell(self):
         points = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+        number_of_attempts_to_find_unoccupied_space = 0
 
         while True:
+            number_of_attempts_to_find_unoccupied_space += 1
             point = random.choice(points)
-            grow_off_of_cell = self.random_edge_cell([point])
+
+            if number_of_attempts_to_find_unoccupied_space >= 5:
+                grow_off_of_cell = self.random_edge_cell([point])
+            else:
+                grow_off_of_cell = self.cells[random.randint(1, 5) * -1]
+
             x = grow_off_of_cell.x + point[0]
             y = grow_off_of_cell.y + point[1]
             cell = Cell(self.cell_screen.wrapped_x(x), self.cell_screen.wrapped_y(y), self.color, 0)

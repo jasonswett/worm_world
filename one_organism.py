@@ -9,7 +9,7 @@ def main():
     cell_screen = CellScreen(SCREEN_WIDTH, int(SCREEN_WIDTH * 0.618))
 
     chromosome = Chromosome('')
-    organism = Organism(cell_screen, (10, 10), 8, chromosome)
+    organism = Organism(cell_screen, (40, 20), 12, chromosome)
 
     cell_screen.organisms.append(organism)
     cell_screen.draw_organism(organism)
