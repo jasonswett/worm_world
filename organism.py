@@ -188,7 +188,6 @@ class Organism:
 
     def advance_reproduction_clock(self):
         if self.reproduction_clock >= self.REPRODUCTION_THRESHOLD:
-            #self.color = (255, 0, 0)
             self.color = self.color
         else:
             self.reproduction_clock += 1
