@@ -10,7 +10,7 @@ def main():
 
     chromosome = Chromosome('')
 
-    organism = Organism(cell_screen, (10, 10), 4, chromosome)
+    organism = Organism(cell_screen, (10, 10), 8, chromosome)
 
     cell_screen.organisms.append(organism)
 
@@ -22,6 +22,6 @@ def main():
         organism.advance()
         cell_screen.draw_organism(organism)
         pygame.display.update()
-        time.sleep(0.1)
+        time.sleep(0.01)
 
 main()
