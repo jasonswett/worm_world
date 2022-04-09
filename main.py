@@ -51,7 +51,7 @@ def add_organism(cell_screen, chromosome):
     organism = Organism(
         cell_screen,
         (cell_screen.random_x(), cell_screen.random_y()),
-        8,
+        4,
         chromosome
     )
 
