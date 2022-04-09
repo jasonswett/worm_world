@@ -64,14 +64,10 @@ class Organism:
         return cells
 
     def faces_outside(self, cell):
-        if self.faces_outside_toward(cell, 0, -1):
-            return True
-        if self.faces_outside_toward(cell, 1, 0):
-            return True
-        if self.faces_outside_toward(cell, 0, 1):
-            return True
-        if self.faces_outside_toward(cell, -1, 0):
-            return True
+        points = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+        for point in points:
+            if self.faces_outside_toward(cell, point[0], point[1]):
+                return True
         return False
 
     def faces_outside_toward(self, cell, x, y):
